@@ -1,0 +1,13 @@
+{
+ "Name": "The Best Autoclicker",
+ "ID": "The Best Autoclicker",
+ "Author": "Tenixx17",
+ "Description": "Create a menu with autoclicker options.",
+ "ModVersion": 1.1,
+ "GameVersion": 2.052,
+ "Date": "13/05/2023",
+ "Dependencies": [],
+ "AllowSteamAchievs": 1,
+ "Disabled": 1,
+ "Workshop": "2973989418"
+}
