@@ -51,8 +51,10 @@ AutoClicker.init = function() {
     //Check if is a goldenCookie and its not wrath, then click it
     
     for (var i in Game.shimmers){
-      if(Game.shimmers[i].type=='golden' && !Game.shimmers[i].wrath ){
-        AutoClicker.dispatchEvent(Game.shimmers[i].l, 'click');
+      if(Game.shimmers[i].type=='golden'  ){
+
+        if(!Game.shimmers[i].wrath ) AutoClicker.dispatchEvent(Game.shimmers[i].l, 'click');
+        else if(AutoClicker.ClickWraths) AutoClicker.dispatchEvent(Game.shimmers[i].l, 'click');
       } 
     }
   };
