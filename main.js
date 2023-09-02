@@ -12,6 +12,7 @@ AutoClicker.init = function() {
   AutoClicker.FortuneClickMode = false;
 
   AutoClicker.MenuHidden = true;
+  AutoClicker.ClickWraths = false;
 
   //Function to hide or show the menu
   AutoClicker.MenuHideShow = function() {
@@ -25,6 +26,12 @@ AutoClicker.init = function() {
         AutoClicker.ButtonContainer.style.visibility = "hidden";
         AutoClicker.MenuHidden = true;
       }
+  };
+
+  AutoClicker.ChangeClickWraths = function() {
+
+    AutoClicker.ClickWraths = !AutoClicker.ClickWraths; 
+    AutoClicker.setButtonStatus(AutoClicker.WrathButton, AutoClicker.ClickWraths);
   };
 
   //AutoClick the cookie
@@ -42,6 +49,7 @@ AutoClicker.init = function() {
     if(!AutoClicker.GoldenClickMode) return;
 
     //Check if is a goldenCookie and its not wrath, then click it
+    
     for (var i in Game.shimmers){
       if(Game.shimmers[i].type=='golden' && !Game.shimmers[i].wrath ){
         AutoClicker.dispatchEvent(Game.shimmers[i].l, 'click');
@@ -137,7 +145,38 @@ AutoClicker.init = function() {
     button.appendChild(textEl);
   }
 
+  AutoClicker.setButtonWrath = function(button) {
+    var textEl = document.createElement('p');
+    var statusTextEl = document.createElement('p');
+    textEl.innerHTML = 'Click Wrath Cookies?';
+    textEl.style.margin = 'auto 0';
+
+    //textEl.style.flexBasis = '60%';
+    //textEl.style.flexBasis = '45%'
+    statusTextEl.innerHTML = 'off';
+    statusTextEl.className = 'status-text';
+    statusTextEl.style.backgroundColor = AutoClicker.OffColor;
+    statusTextEl.style.margin = 'auto 0';
+    statusTextEl.style.padding = '0.5rem';
+    //statusTextEl.style.textAlign = 'center';
+    statusTextEl.style.flexBasis = '20%'
+
+    button.style.display = 'flex';
+    button.style.padding = '0.5rem';
+    button.style.height = '3.25rem';
+    button.style.flexBasis = '45%';
+    button.style.justifyContent = 'center';
+    button.style.marginBottom = '0.25rem';
+    button.style.backgroundColor = AutoClicker.ButtonBackgroundColor;
+    button.style.cursor = 'pointer';
+    button.addEventListener('click', AutoClicker.ChangeClickWraths);
+    button.appendChild(textEl);
+    button.appendChild(statusTextEl);
+  }
+
   AutoClicker.createButtons = function() {
+
+    //TODO : Cambiar completante el estilo del menu
     var container = document.createElement('div');
     container.style.padding = '1rem';
     container.style.backgroundColor = AutoClicker.ButtonContainerColor;
@@ -163,11 +202,15 @@ AutoClicker.init = function() {
     
     var hideButton = document.createElement('div');
     AutoClicker.setButtonHide(hideButton, 'Hide', AutoClicker.MenuHideShow);
+
+    var WrathButton = document.createElement('div');
+    AutoClicker.setButtonWrath(WrathButton);
     
     container.appendChild(autoButton);
     container.appendChild(autoGoldenButton);
     container.appendChild(autoFortuneButton);
     container.appendChild(hideButton);
+    container.appendChild(WrathButton);
     
     var gameContainer = document.getElementById('sectionLeft')
     gameContainer.appendChild(container);
@@ -176,6 +219,7 @@ AutoClicker.init = function() {
     AutoClicker.AutoButton = autoButton;
     AutoClicker.AutoGoldenButton = autoGoldenButton;
     AutoClicker.AutoFortuneButton = autoFortuneButton;
+    AutoClicker.WrathButton = WrathButton
     AutoClicker.ButtonContainer.style.visibility = "hidden";
   };
 
