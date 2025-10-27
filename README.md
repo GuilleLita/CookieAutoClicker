@@ -1,5 +1,5 @@
 # CookieAutoClicker
 Autoclicker menu for the game Cookie Clicker
 
+<img width="510" height="176" alt="image" src="https://github.com/user-attachments/assets/ba5c404f-0519-4afe-b357-16228cf1b431" />
 
-<img width="499" height="326" alt="image" src="https://github.com/user-attachments/assets/691c3d0a-d8f4-4171-a059-510b2cda7f3c" />
