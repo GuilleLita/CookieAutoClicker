@@ -1,5 +1,10 @@
 var AutoClicker = {}
 
+if(typeof CCSE == 'undefined')
+{
+	Game.LoadMod('https://klattmose.github.io/CookieClicker/SteamMods/CCSE/main.js');
+}
+
 AutoClicker.init = function() {
   //Init values for menus
   AutoClicker.OffColor = '#b52f18';
@@ -17,12 +22,12 @@ AutoClicker.init = function() {
   //Function to hide or show the menu
   AutoClicker.MenuHideShow = function() {
       if(AutoClicker.MenuHidden) {
-        AutoClicker.ShowContainer.style.visibility = "hidden";    
+        //AutoClicker.ShowContainer.style.visibility = "hidden";    
         AutoClicker.ButtonContainer.style.visibility = "visible";
         AutoClicker.MenuHidden = false;
       }
       else {
-        AutoClicker.ShowContainer.style.visibility = "visible";    
+        //AutoClicker.ShowContainer.style.visibility = "visible";    
         AutoClicker.ButtonContainer.style.visibility = "hidden";
         AutoClicker.MenuHidden = true;
       }
@@ -105,6 +110,13 @@ AutoClicker.init = function() {
     textEl.innerHTML = text;
     textEl.style.margin = 'auto 0';
 
+    textEl.style.fontSize = '0.9rem';
+    textEl.style.flexBasis = '60%';
+    textEl.style.textAlign = 'right';
+    textEl.style.paddingRight = '0.5rem';
+    textEl.style.boxSizing = 'border-box';
+    textEl.style.fontFamily = 'Courier, Geneva, Tahoma, sans-serif';
+
     //textEl.style.flexBasis = '60%';
     //textEl.style.flexBasis = '45%'
     statusTextEl.innerHTML = 'off';
@@ -117,12 +129,17 @@ AutoClicker.init = function() {
     
     button.style.display = 'flex';
     button.style.padding = '0.5rem';
-    button.style.height = '3.25rem';
     button.style.flexBasis = '45%';
     button.style.justifyContent = 'space-between';
     button.style.marginBottom = '0.25rem';
-    button.style.backgroundColor = AutoClicker.ButtonBackgroundColor;
+    button.style.marginLeft = 'auto';
+    button.style.backgroundColor = 'rgba(255,255,255,0.05)';
     button.style.cursor = 'pointer';
+    button.style.border = '2px solid #af8f00';
+    button.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+    button.style.transition = 'background-color 0.3s, box-shadow 0.3s';
+    button.style.borderRadius = '5px';
+
     button.addEventListener('click', eventCallback);
     button.appendChild(textEl);
     button.appendChild(statusTextEl);
@@ -132,16 +149,20 @@ AutoClicker.init = function() {
     var textEl = document.createElement('p');
     textEl.innerHTML = text;
     textEl.style.margin = 'auto 0';
-    //textEl.style.textAlign = 'center';
-    //textEl.style.flexBasis = '60%';
-    //textEl.style.flexBasis = '45%'
+    
+    textEl.style.fontSize = '0.9rem';
+    textEl.style.flexBasis = '60%';
+    textEl.style.textAlign = 'right';
+    textEl.style.paddingRight = '0.5rem';
+    textEl.style.boxSizing = 'border-box';
+    textEl.style.fontFamily = 'Courier, Geneva, Tahoma, sans-serif';
+
     button.style.display = 'flex';
     button.style.padding = '0.5rem';
-    button.style.height = '3.25rem';
     button.style.flexBasis = '45%';
     button.style.justifyContent = 'center';
     button.style.marginBottom = '0.25rem';
-    button.style.backgroundColor = AutoClicker.ButtonBackgroundColor;
+    button.style.backgroundColor = 'rgba(255,255,255,0.05)';
     button.style.cursor = 'pointer';
     button.addEventListener('click', eventCallback);
     button.appendChild(textEl);
@@ -150,8 +171,14 @@ AutoClicker.init = function() {
   AutoClicker.setButtonWrath = function(button) {
     var textEl = document.createElement('p');
     var statusTextEl = document.createElement('p');
-    textEl.innerHTML = 'Click Wrath Cookies?';
+    textEl.innerHTML = 'Wrath Cookies?';
     textEl.style.margin = 'auto 0';
+    textEl.style.fontSize = '0.9rem';
+    textEl.style.flexBasis = '60%';
+    textEl.style.textAlign = 'right';
+    textEl.style.paddingRight = '0.5rem';
+    textEl.style.boxSizing = 'border-box';
+    textEl.style.fontFamily = 'Courier, Geneva, Tahoma, sans-serif';
 
     //textEl.style.flexBasis = '60%';
     //textEl.style.flexBasis = '45%'
@@ -165,12 +192,19 @@ AutoClicker.init = function() {
 
     button.style.display = 'flex';
     button.style.padding = '0.5rem';
-    button.style.height = '3.25rem';
+    button.style.width = 'auto';
     button.style.flexBasis = '45%';
     button.style.justifyContent = 'center';
     button.style.marginBottom = '0.25rem';
-    button.style.backgroundColor = AutoClicker.ButtonBackgroundColor;
+    button.style.marginLeft = 'auto';
+    button.style.backgroundColor = 'rgba(255,255,255,0.05)';
     button.style.cursor = 'pointer';
+    button.style.border = '2px solid #af8f00';
+    button.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+    button.style.transition = 'background-color 0.3s, box-shadow 0.3s';
+    button.style.borderRadius = '5px';
+
+
     button.addEventListener('click', AutoClicker.ChangeClickWraths);
     button.appendChild(textEl);
     button.appendChild(statusTextEl);
@@ -179,19 +213,27 @@ AutoClicker.init = function() {
   AutoClicker.createButtons = function() {
 
     //TODO : Cambiar completante el estilo del menu
+
     var container = document.createElement('div');
-    container.style.padding = '1rem';
-    container.style.backgroundColor = AutoClicker.ButtonContainerColor;
+    container.className = 'optionBox';
+
     container.style.position = 'absolute';
+
     container.style.display = 'flex';
-    container.style.justifyContent = 'space-between'
-    container.style.flexWrap = 'wrap';
-    container.style.top = '75%';
-    container.style.left = '15%';
-    container.style.right = '15%';
-    container.style.color = 'white';
+
     container.style.zIndex = '9999';
-    container.style.border = '1px solid lightgray';
+
+    container.style.flexWrap = 'wrap';
+    container.style.width = '80%';
+    container.style.padding = '1rem';
+    container.style.top = '75%';
+    container.style.left = '50%';
+    container.style.transform = 'translateX(-50%)';
+    container.style.background = 'rgba(26, 26, 26, 0.32)';
+    container.style.borderRadius = '10px';
+    container.style.border = '2px solid #af8f00';
+    container.style.boxShadow = '0 0 10px rgba(0, 0, 0, 0.5)';
+
 
     var autoButton = document.createElement('div');
     AutoClicker.setButtonProps(autoButton, 'Auto Click', AutoClicker.AutoClickCallback);
@@ -202,8 +244,8 @@ AutoClicker.init = function() {
     var autoFortuneButton = document.createElement('div');
     AutoClicker.setButtonProps(autoFortuneButton, 'Auto Fortunes', AutoClicker.FortuneAutoClickCallback);
     
-    var hideButton = document.createElement('div');
-    AutoClicker.setButtonHide(hideButton, 'Hide', AutoClicker.MenuHideShow);
+    //var hideButton = document.createElement('div');
+    //AutoClicker.setButtonHide(hideButton, 'Hide', AutoClicker.MenuHideShow);
 
     var WrathButton = document.createElement('div');
     AutoClicker.setButtonWrath(WrathButton);
@@ -211,7 +253,7 @@ AutoClicker.init = function() {
     container.appendChild(autoButton);
     container.appendChild(autoGoldenButton);
     container.appendChild(autoFortuneButton);
-    container.appendChild(hideButton);
+    //container.appendChild(hideButton);
     container.appendChild(WrathButton);
     
     var gameContainer = document.getElementById('sectionLeft')
@@ -222,37 +264,23 @@ AutoClicker.init = function() {
     AutoClicker.AutoGoldenButton = autoGoldenButton;
     AutoClicker.AutoFortuneButton = autoFortuneButton;
     AutoClicker.WrathButton = WrathButton
-    AutoClicker.ButtonContainer.style.visibility = "hidden";
+    AutoClicker.ButtonContainer.style.visibility = "visible"; 
   };
 
 
   AutoClicker.createButtonShow = function() {
 
     var textEl = document.createElement('p');
-    textEl.innerHTML = 'Show';
-    textEl.style.margin = 'auto 0';
+    document.getElementById('versionNumber').insertAdjacentHTML('beforeend','<a style="position:relative;left:4px;top:7px;overflow:hidden;z-index:10;" class="option neato" id="autoclickerShow">Show Clicker Menu</a>');
     
-    var container = document.createElement('div');
-    container.style.padding = '1rem';
-    container.style.backgroundColor = AutoClicker.ButtonBackgroundColor;
-    container.style.position = 'absolute';
-    container.style.display = 'flex';
-    container.style.justifyContent = 'center';
-    container.style.flexWrap = 'wrap';
-    container.style.top = '85%';
-    container.style.right = '5%';
-    container.style.color = 'white';
-    container.style.zIndex = '9999';
-    container.style.border = '1px solid lightgray';
-    container.addEventListener('click', AutoClicker.MenuHideShow);
-    container.appendChild(textEl);
-    container.style.cursor = 'pointer';
-    
-    AutoClicker.ShowContainer = container;
-    AutoClicker.ShowContainer.style.visibility = "visible";
+    l('autoclickerShow').style.cursor = 'pointer';
+    l('autoclickerShow').addEventListener('click', AutoClicker.MenuHideShow);
+
+    //AutoClicker.ShowContainer = container;
+    //AutoClicker.ShowContainer.style.visibility = "visible";
     
     var gameContainer = document.getElementById('sectionLeft')
-    gameContainer.appendChild(container);
+    //gameContainer.appendChild(container);
     
     
   };
